@@ -1,0 +1,9 @@
+h1 {
+    color: #222222;
+    text-align: center;
+}
+
+.center {
+    width: 50%;
+    margin: auto;
+}
