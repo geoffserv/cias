@@ -4,8 +4,8 @@ Trying to interact with a Crestron MD8x8 over telnet
 
 Requirements
 ------------
-telnet2 : maybe this would work
-cial_globals : Global junk
+telnetlib : maybe this would work
+cias_globals : Global junk
 """
 
 import telnetlib
@@ -19,6 +19,8 @@ class CiasControl(object):
         # Assuming a DM-MD8x8, because that's what I have
         # Build an array to reference the card names vs chassis #s
         # Use this with e.g. self.cardsInput[2] to get back ['Input 2 Name', card_2_#]
+        # awareness that the array is 0 indexed, so card 1 will be array[0], card 2 is array[1] etc
+        # u know
         self.cardsInput = []
         for i in range(1, 9):
             self.cardsInput.append([cias_globals.config['cias'].get('input{}Name'.format(i)),
@@ -59,6 +61,10 @@ class CiasControl(object):
         # Send it to the device LCD
         self.send_command("MESSage {}\r".format(lcd_message))
 
+    def get_input_card_name(self, card_input):
+        # return the pretty name of an input card
+        return self.cardsInput[card_input-1][0]
+
     def route_av(self, card_input, card_output):
         # arrays are indexed on 0 (index 0 is the first), the args we pass in are indexed on 1 (card #1 is the first)
         # remove 1 from each
@@ -73,8 +79,8 @@ class CiasControl(object):
         self.lcd_update(lcd_message)
 
 
-if __name__ == "__main__":
-    cias = CiasControl()
-
-    # Route input 1 to output 1
-    cias.route_av(1, 1)
+# if __name__ == "__main__":
+#     cias = CiasControl()
+#
+#     # Route input 1 to output 1
+#     cias.route_av(1, 1)

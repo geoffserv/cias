@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">
+    <title>cias</title>
+</head>
+<body>
+	<div class="center">
+		<img src="{{ url_for('static', filename= 'h2vc.jpg') }}"><br>
+        <h1>{{ msg }}</h1>
+		<a href="?op=1"><img src="{{ url_for('static', filename= 'chromecast.jpg') }}"></a><br>
+		<a href="?op=2"><img src="{{ url_for('static', filename= 'switch.jpg') }}"></a><br>
+		<a href="?op=3"><img src="{{ url_for('static', filename= 'macmini.jpg') }}"></a>
+	</div>
+</body>
+</html>
