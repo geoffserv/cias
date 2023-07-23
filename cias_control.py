@@ -4,8 +4,8 @@ Trying to interact with a Crestron MD8x8 over telnet
 
 Requirements
 ------------
-telnetlib : maybe this would work
-cias_globals : Global junk
+telnetlib : Simple telnet library
+cias_globals : Program globals
 """
 
 import telnetlib
@@ -32,6 +32,7 @@ class CiasControl(object):
                                      cias_globals.config['cias'].get('output{}Card'.format(i))])
 
     def send_command(self, telnet_cmd):
+        # TODO: validate input
         # Connect to self.host.  The DM-MD8x8 by default has no un/pw
         cias_globals.debugger.message("TELN", "Telnet cnnect: {}".format(self.host))
         telnet = telnetlib.Telnet(self.host)
@@ -50,6 +51,8 @@ class CiasControl(object):
         telnet_output = telnet.read_until(b">", timeout=2)
         cias_globals.debugger.message("TELN", "Telnet output: {}".format(telnet_output))
 
+        # Close.  One command per connection.  This is slow but consistent, future improvement will be to
+        # queue and chain commands in a single connection.
         telnet.close()
 
     def lcd_update(self, message):
@@ -63,11 +66,13 @@ class CiasControl(object):
 
     def get_input_card_name(self, card_input):
         # return the pretty name of an input card
+        # TODO: validate input
         return self.cardsInput[card_input-1][0]
 
     def route_av(self, card_input, card_output):
         # arrays are indexed on 0 (index 0 is the first), the args we pass in are indexed on 1 (card #1 is the first)
         # remove 1 from each
+        # TODO: validate input
         card_input -= 1
         card_output -= 1
 
