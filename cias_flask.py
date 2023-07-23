@@ -13,17 +13,25 @@ app = Flask(__name__)
 @app.route('/', methods=['GET'])
 def index():
     args = request.args
-    msg = ""
 
-    if not args.get("op"):
-        # No operation defined, default do nothing
-        msg = "Tap desired input:"
-    else:
-        # Some kind of operation is defined
-        # Squash it to an int, op represents which input to switch to
-        op = int(args.get("op"))
-        cias = cias_control.CiasControl()
-        msg = "Switching input to {}".format(cias.get_input_card_name(op))
-        cias.route_av(op, 1)
+    if args.get("chassis"):
+        chassis = args.get("chassis")
+        mode = args.get("mode")
 
-    return render_template('index.html', msg=msg)
+        cias = cias_control.CiasControl(chassis)
+
+        if mode == "lcdtest":
+            cias.lcd_test()
+            return "Testing LCD"
+
+        if mode == "route":
+            if args.get("op"):
+                # Some kind of operation is defined
+                # Squash it to an int, op represents which input to switch to
+                op = int(args.get("op"))
+
+                cias.route_av(op, 1)
+                return "Switching input"
+
+    # If no op is specified, render the UI
+    return render_template('index.html')
