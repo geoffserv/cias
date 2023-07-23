@@ -2,16 +2,112 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">
+    <!--<link rel="stylesheet" href="{{ url_for('static', filename= 'css/style.css') }}">-->
+	<link rel="stylesheet" href="{{ url_for('static', filename= 'css/onsenui.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename= 'css/onsen-css-components.min.css') }}">
+    <script src="{{ url_for('static', filename= 'js/onsenui.min.js') }}"></script>
+	<script src="{{ url_for('static', filename= 'js/app.js') }}"></script>
     <title>cias</title>
 </head>
 <body>
-	<div class="center">
+	<!--<div class="center">
 		<img src="{{ url_for('static', filename= 'h2vc.jpg') }}"><br>
         <h1>{{ msg }}</h1>
 		<a href="?op=1"><img src="{{ url_for('static', filename= 'chromecast.jpg') }}"></a><br>
 		<a href="?op=2"><img src="{{ url_for('static', filename= 'switch.jpg') }}"></a><br>
 		<a href="?op=3"><img src="{{ url_for('static', filename= 'macmini.jpg') }}"></a>
-	</div>
+	</div>-->
+	<ons-page>
+	  <ons-toolbar>
+		<div class="center">Upstairs</div>
+	  </ons-toolbar>
+
+	  <ons-tabbar swipeable position="auto">
+		<ons-tab page="upstairs.html" label="Upstairs" icon="md-tv" active-icon="md-tv-play" active>
+		</ons-tab>
+		<ons-tab page="basement.html" label="Basement" icon="md-tv" active-icon="md-tv-play">
+		</ons-tab>
+	  </ons-tabbar>
+	</ons-page>
+
+	<template id="upstairs.html">
+	  <ons-page id="Upstairs">
+		<ons-list>
+			<ons-list-header>Upstairs Crestron Controller</ons-list-header>
+			<ons-list-item tappable>
+			  <div class="left">
+				<img class="list-item__thumbnail" src="{{ url_for('static', filename= 'img/hdmi-port.jpg') }}">
+			  </div>
+			  <div class="center">
+				<span class="list-item__title">Chromecast</span><span class="list-item__subtitle">Input 1</span>
+			  </div>
+			</ons-list-item>
+			<ons-list-item tappable>
+			  <div class="left">
+				<img class="list-item__thumbnail" src="{{ url_for('static', filename= 'img/hdmi-port.jpg') }}">
+			  </div>
+			  <div class="center">
+				<span class="list-item__title">Nintendo Switch</span><span class="list-item__subtitle">Input 2</span>
+			  </div>
+			</ons-list-item>
+			<ons-list-item tappable>
+			  <div class="left">
+				<img class="list-item__thumbnail" src="{{ url_for('static', filename= 'img/hdmi-port.jpg') }}">
+			  </div>
+			  <div class="center">
+				<span class="list-item__title">Mac Mini</span><span class="list-item__subtitle">Input 3</span>
+			  </div>
+			</ons-list-item>
+			<ons-list-item tappable>
+			  <div class="left">
+				<img class="list-item__thumbnail" src="{{ url_for('static', filename= 'img/hdmi-port.jpg') }}">
+			  </div>
+			  <div class="center">
+				<span class="list-item__title">Aux 1</span><span class="list-item__subtitle">Input 4</span>
+			  </div>
+			</ons-list-item>
+		</ons-list>
+	  </ons-page>
+	</template>
+
+	<template id="basement.html">
+	  <ons-page id="Basement">
+		<ons-list>
+			<ons-list-header>Basement Crestron Controller</ons-list-header>
+			<ons-list-item tappable>
+			  <div class="left">
+				<img class="list-item__thumbnail" src="{{ url_for('static', filename= 'img/hdmi-port.jpg') }}">
+			  </div>
+			  <div class="center">
+				<span class="list-item__title">Chromecast</span><span class="list-item__subtitle">Input 1</span>
+			  </div>
+			</ons-list-item>
+			<ons-list-item tappable>
+			  <div class="left">
+				<img class="list-item__thumbnail" src="{{ url_for('static', filename= 'img/hdmi-port.jpg') }}">
+			  </div>
+			  <div class="center">
+				<span class="list-item__title">Nintendo Switch</span><span class="list-item__subtitle">Input 2</span>
+			  </div>
+			</ons-list-item>
+			<ons-list-item tappable>
+			  <div class="left">
+				<img class="list-item__thumbnail" src="{{ url_for('static', filename= 'img/hdmi-port.jpg') }}">
+			  </div>
+			  <div class="center">
+				<span class="list-item__title">Aux 1</span><span class="list-item__subtitle">Input 3</span>
+			  </div>
+			</ons-list-item>
+			<ons-list-item tappable>
+			  <div class="left">
+				<img class="list-item__thumbnail" src="{{ url_for('static', filename= 'img/hdmi-port.jpg') }}">
+			  </div>
+			  <div class="center">
+				<span class="list-item__title">Aux 2</span><span class="list-item__subtitle">Input 4</span>
+			  </div>
+			</ons-list-item>
+		</ons-list>
+	  </ons-page>
+	</template>
 </body>
 </html>
